@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guardar Producto</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="text-center mt-5">Guardar Producto</h1>
+        <div id="alerta" class="alert alert-info alert-dismissible fade show">
+            
+            <strong>Info!</strong> <span id="mensaje" ></span>
+            <button class="close">&times;</button>
+          </div>
+        <label>Codigo de Catalogo</label>
+        <input class="form-control mb-3" id="id">
+        <p class="text-danger err">*Codigo Producto Vacio</p>
+        <label>Producto</label>
+        <input class="form-control mb-3" id="nomprod">
+        <p class="text-danger err">*Nombre Producto Vacio</p>
+        <label>Precio</label>
+        <input class="form-control mb-3" id="precio" type="number">
+        <p class="text-danger err">*Precio Vacio</p>
+        <label>Categoria</label>
+        <select class="form-control mb-3" id="categoria">
+            <option value="0">Seleccione una Opción</option>
+            <option>Bebidas</option>
+            <option>Producto Hogar</option>
+            <option>Tecnologia</option>
+        </select>
+        <p class="text-danger err">*No se Escogio la Categoria</p>
+        <label>Descripción</label>
+        <input class="form-control mb-3" id="descripcion">
+        <p class="text-danger err">*Descripción Vacio</p>
+        <button id="guardar" class="btn btn-primary">Guardar</button>      
+    </div>
+    <script src="assets/js/crud.js"></script>
+</body>
+
+</html>l
