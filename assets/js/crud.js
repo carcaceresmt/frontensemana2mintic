@@ -1,14 +1,42 @@
-const tbody = document.getElementById("tbody")
-const endpoint = "http://localhost:8080/api/Producto"
-const mostrarProducto = () => {
-    axios.get(endpoint + "/all").then((result) => {
-        const productos = result.data
-        console.log(productos)
-        renderizarTabla(productos)
+/**
+ * autor carlos jose caceres ochoa
+ */
 
-    });
+
+/**
+ * Capturar el DOM
+ */
+const tbody = document.getElementById("tbody")
+
+/**enpoint api Rest */
+const endpoint = "http://localhost:8080/api/Producto"
+
+/**funcion mostrar producto */
+
+const mostrarProducto = () => {
+
+        const resp=consumirGet();
+        resp.then(result=>{
+            console.log(result)
+            productos=result.data
+            console.log(productos)
+            renderizarTabla(productos)
+        })
+        .catch(e=>{
+            console.log(e)
+        })  
 }
 
+/**
+ * peticion get asyncrona utilizando axios
+ */
+const consumirGet=async()=>{
+    return await axios.get(endpoint + "/all");
+}
+/**
+ * 
+ * construir la tabla
+ */
 const renderizarTabla = (productos) => {
     let registro = ""
     let index = 1

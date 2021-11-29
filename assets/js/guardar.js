@@ -1,4 +1,15 @@
+/**
+ * autor carlos jose caceres ochoa
+ */
+
+/**enpoint api Rest */
 const endpoint="http://localhost:8080/api/Producto/save"
+
+
+/**
+ * Capturar el DOM
+ */
+
 const bguardar = document.getElementById("guardar")
 const alerta = document.getElementById("alerta")
 const mensaje = document.getElementById("mensaje")
@@ -9,38 +20,33 @@ const categoria = document.getElementById("categoria")
 const stock = document.getElementById("stock")
 const descripcion = document.getElementById("descripcion")
 const errores = document.getElementsByClassName("err")
+
+/**
+ * Ocultar los errores de Validación
+ */
 for(let i=0;i<errores.length;i++){
     errores[i].style.display = "none";
 }
-/*
-errores[0].style.display = "none";
-errores[1].style.display = "none";
-errores[2].style.display = "none";
-errores[3].style.display = "none";
-errores[4].style.display = "none";
-var cont=0
-*/
+
+/**
+ * Ocultar El Alert
+ */
 alerta.style.display = "none";
 
-const guardar = () => {
+/**
+ * funcion guardar datos 
+ */
 
-    const producto = {
-        id: id.value,
-        nomprod: nomprod.value,
-        precio: precio.value,
-        categoria: categoria.value,
-        stock:stock.value,
-        descripcion: descripcion.value
-    }
-    const data = JSON.stringify(producto)
-    console.log(data)
+const guardar = () => {
+  
     //  peticionPost(data)
     validar()
     if(id.value != "" && nomprod.value != "" && precio.value != "" && categoria.value != "0" &&
-    descripcion.value != "" && stock.valule!=""){
-
-        let msj = ""
-        axios.post(endpoint, producto).then((result) => {
+    descripcion.value != "" && stock.valule!=""){       
+      
+        const resp=peticionPost(objetoProducto())
+        let msj = ""        
+        resp.then((result) => {
             if (result.status == 201) {
                 msj = "Registro Insertado con Exito!!"
             }
@@ -51,11 +57,37 @@ const guardar = () => {
             alerta.style.display = "block";
         });
 
-    }
-    
-
-
+    }    
 }
+
+/**
+ * peticion post asyncrona utilizando axios
+ */
+
+const peticionPost=async(producto)=>{
+    return await axios.post(endpoint, producto);
+}
+
+/**
+ * 
+ * capturar de datos en el objeto producto
+ */
+
+const objetoProducto=()=>{
+    const producto = {
+        id: id.value,
+        nomprod: nomprod.value,
+        precio: precio.value,
+        categoria: categoria.value,
+        stock:stock.value,
+        descripcion: descripcion.value
+    }
+    return producto
+}
+
+/**
+ * validar entrada de datos
+ */
 
 const validar = () => {
 
@@ -86,7 +118,9 @@ const validar = () => {
 
 }
 
-
+/**
+ * eventos para ocultar errores
+ */
 
 const cerrarAlerta = () => {
     alerta.style.display = "none";
@@ -113,6 +147,10 @@ const clickInputDescripcion = () => {
     
         errores[4].style.display = "none";
    }
+
+/**
+ * eventos click de componentes
+ */
 
 bguardar.addEventListener("click", guardar)
 alerta.addEventListener("click", cerrarAlerta)
